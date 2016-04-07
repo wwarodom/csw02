@@ -45,6 +45,11 @@
  					.success( function (data){
  						$scope.result = data.message	
  					})
+
+ 				$http.get("/api/bears")
+ 					.then(function(response) {
+ 						$scope.bears = response.data
+ 				})	
  			}
  		})
  	</script>

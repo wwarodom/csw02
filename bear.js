@@ -6,6 +6,8 @@ var express = require('express'),
 var bears = [{'id':0,'name':'Vinnie','weight':100},
 			 {'id':1,'name':'Pooh','weight':120}];
 
+var bearIndex = 2;
+
 app.use(express.static('public')) 
 
 router.route('/bears') 
@@ -15,7 +17,7 @@ router.route('/bears')
 
 	.post(function(req, res) { 
 	    var bear = {}; 
-	    bear.id = req.body.id
+	    bear.id = bearIndex++
 	    bear.name = req.body.name
 	    bear.weight = req.body.weight
 	    bears.push(bear); 
