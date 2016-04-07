@@ -12,10 +12,11 @@
  		<h2>Bear Restful:</h2> 
  		<b> Result: </b> {{result}}
  		<ul>
- 			<li ng-repeat="bear in bears track by $index" >
+ 			<li ng-repeat="bear in bears track by $index" ng-if="!isEmpty(bear)" >
  				{{bear}}		
  				<button type="submit" ng-click="get(bear.id)"> Get </button>
  				<button type="submit" ng-click="edit(bear.id)"> Edit </button>
+ 				<button type="submit" ng-click="delete(bear.id)"> Delete </button>
  			</li>
  		</ul> 	
 
@@ -33,6 +34,7 @@
  		<label for="weight">Weight: </label>
  		<input type="text" id="name" ng-model="editBear.weight"><br> 		
  		<button ng-click="update(editBear.id)">Update</button>
+
 
  	</div>
 
@@ -74,9 +76,19 @@
 
  			$scope.update = function(id) {
  				Bear.update( {bear_id: id}, { name: $scope.editBear.name, 
- 											weight: $scope.editBear.weight} )
+ 											weight: $scope.editBear.weight})
  				$scope.result = 'Update bear ' + id
  				$scope.bears = Bear.query()
+ 			}
+
+ 			$scope.delete = function(id) {
+ 				Bear.delete( {bear_id: id})
+ 				$scope.result = 'Delete bear ' + id
+ 				$scope.bears = Bear.query()
+ 			}
+
+ 			$scope.isEmpty = function(bear) {
+ 				return Object.keys(bear).length == 0
  			}
 
  		})
