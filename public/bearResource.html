@@ -37,6 +37,16 @@
  					$scope.result = bear
  				})
  			}	
+
+ 			$scope.add =  function() {
+ 			    var givenBear = new Bear($scope.addBear)
+			    givenBear.$save(function(data){ 
+			        console.log(data.message)			        
+			    }) 
+			    $scope.bears = Bear.query()
+ 			}
+
+
  		})
  	</script>
 
