@@ -20,7 +20,7 @@ router.route('/bears')
 	    bear.weight = req.body.weight
 	    bears.push(bear); 
 	    // res.json(bears); 
-	    res.json({ message: 'Add new beared'} ) 
+	    res.json({ message: 'Added a new bear'} ) 
 	})
   
 router.route('/bears/:bear_id')
